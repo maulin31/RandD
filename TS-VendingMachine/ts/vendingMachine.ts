@@ -18,7 +18,7 @@ class Cell {
 class VendingMachine {
     private paid = ko.observable(0);
     selectedCell = ko.observable(new Cell(new Initial()));
-    acceptedCoins: Coin[] = [new Dime(), new Quarter(), new Half(), new Dollar()];
+    acceptedCoins: Coins.Coin[] = [new Coins.Dime(), new Coins.Quarter(), new Coins.Half(), new Coins.Dollar()];
     cells = ko.observableArray([]);
     canPay = ko.pureComputed(() => this.paid() - this.selectedCell().product.price >= 0)
 
@@ -35,7 +35,7 @@ class VendingMachine {
         this.selectedCell(cell);
     }
 
-    acceptCoin = (coin: Coin): void => {
+    acceptCoin = (coin: Coins.Coin): void => {
         let  oldTotal = this.paid();
         this.paid(oldTotal + coin.Value);
     }

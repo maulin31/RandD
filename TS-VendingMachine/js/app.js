@@ -3,60 +3,68 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Coin = (function () {
-    function Coin(value) {
-        this.value = value;
-    }
-    Object.defineProperty(Coin.prototype, "Value", {
-        get: function () {
-            return this.value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    return Coin;
-}());
-var Quarter = (function (_super) {
-    __extends(Quarter, _super);
-    function Quarter() {
-        _super.call(this, .25);
-    }
-    Quarter.prototype.getImageUrl = function () {
-        return "img/Quarter.jpg";
-    };
-    return Quarter;
-}(Coin));
-var Dime = (function (_super) {
-    __extends(Dime, _super);
-    function Dime() {
-        _super.call(this, .10);
-    }
-    Dime.prototype.getImageUrl = function () {
-        return "img/Dime.jpg";
-    };
-    return Dime;
-}(Coin));
-var Half = (function (_super) {
-    __extends(Half, _super);
-    function Half() {
-        _super.call(this, .50);
-    }
-    Half.prototype.getImageUrl = function () {
-        return "img/Half.png";
-    };
-    return Half;
-}(Coin));
-var Dollar = (function (_super) {
-    __extends(Dollar, _super);
-    function Dollar() {
-        _super.call(this, 1.0);
-    }
-    Dollar.prototype.getImageUrl = function () {
-        return "img/Dollar.jpg";
-    };
-    return Dollar;
-}(Coin));
+var Coins;
+(function (Coins) {
+    var Coin = (function () {
+        function Coin(value) {
+            this.value = value;
+        }
+        Object.defineProperty(Coin.prototype, "Value", {
+            get: function () {
+                return this.value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        return Coin;
+    }());
+    Coins.Coin = Coin;
+    var Quarter = (function (_super) {
+        __extends(Quarter, _super);
+        function Quarter() {
+            _super.call(this, .25);
+        }
+        Quarter.prototype.getImageUrl = function () {
+            return "img/Quarter.jpg";
+        };
+        return Quarter;
+    }(Coin));
+    Coins.Quarter = Quarter;
+    var Dime = (function (_super) {
+        __extends(Dime, _super);
+        function Dime() {
+            _super.call(this, .10);
+        }
+        Dime.prototype.getImageUrl = function () {
+            return "img/Dime.jpg";
+        };
+        return Dime;
+    }(Coin));
+    Coins.Dime = Dime;
+    var Half = (function (_super) {
+        __extends(Half, _super);
+        function Half() {
+            _super.call(this, .50);
+        }
+        Half.prototype.getImageUrl = function () {
+            return "img/Half.png";
+        };
+        return Half;
+    }(Coin));
+    Coins.Half = Half;
+    var Dollar = (function (_super) {
+        __extends(Dollar, _super);
+        function Dollar() {
+            _super.call(this, 1.0);
+        }
+        Dollar.prototype.getImageUrl = function () {
+            return "img/Dollar.jpg";
+        };
+        return Dollar;
+    }(Coin));
+    Coins.Dollar = Dollar;
+})(Coins || (Coins = {}));
 var ProductCategory = (function () {
     function ProductCategory() {
         this.imgPath = "img/";
@@ -185,7 +193,7 @@ var VendingMachine = (function () {
         var _this = this;
         this.paid = ko.observable(0);
         this.selectedCell = ko.observable(new Cell(new Initial()));
-        this.acceptedCoins = [new Dime(), new Quarter(), new Half(), new Dollar()];
+        this.acceptedCoins = [new Coins.Dime(), new Coins.Quarter(), new Coins.Half(), new Coins.Dollar()];
         this.cells = ko.observableArray([]);
         this.canPay = ko.pureComputed(function () { return _this.paid() - _this.selectedCell().product.price >= 0; });
         this.select = function (cell) {
