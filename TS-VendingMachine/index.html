@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-4">
                 <h4>
-                    paid: $
+                    Paid: $
                     <span id="total" data-bind="text: paid"></span>
                     <div data-bind="foreach: acceptedCoins">
                         <img data-bind="attr: {src: getImageUrl(), alt: value}, click: $parent.acceptCoin">
@@ -33,10 +33,6 @@
                         <div>$ <span data-bind="text: product.price"></span></div>
                     </h3>
                     <button class="btn btn-primary payButton" data-bind="enable: canPay, click: pay">Pay</button>
-                    <!--<br><br>
-                    <button class="btn btn-primary" onclick="machine.acceptCoin(new Quarter())">
-                        Insert Quarter
-                    </button>-->
                 </h4>
             </div>
         </div>
